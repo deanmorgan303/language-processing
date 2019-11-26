@@ -11,6 +11,7 @@ import java.util.*;
 import fnplot.sys.SyntaxFnPlotException;
 import fnplot.values.FnPlotValue;
 import fnplot.values.FnPlotReal;
+import fnplot.syntax.ExpFunction;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -36,17 +37,20 @@ public class FnPlotParser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\042\000\002\002\003\000\002\002\004\000\002\003" +
+    "\000\052\000\002\002\003\000\002\002\004\000\002\003" +
     "\004\000\002\003\003\000\002\004\003\000\002\004\004" +
-    "\000\002\017\003\000\002\017\005\000\002\017\003\000" +
+    "\000\002\022\003\000\002\022\005\000\002\022\003\000" +
     "\002\006\006\000\002\014\005\000\002\014\003\000\002" +
     "\015\003\000\002\015\003\000\002\007\010\000\002\016" +
-    "\005\000\002\012\004\000\002\012\003\000\002\013\005" +
-    "\000\002\013\003\000\002\005\006\000\002\020\005\000" +
-    "\002\020\005\000\002\020\003\000\002\021\005\000\002" +
-    "\021\005\000\002\021\005\000\002\021\003\000\002\023" +
-    "\003\000\002\023\003\000\002\022\003\000\002\022\003" +
-    "\000\002\022\005\000\002\024\002" });
+    "\005\000\002\016\003\000\002\017\003\000\002\017\003" +
+    "\000\002\021\006\000\002\020\005\000\002\012\004\000" +
+    "\002\012\003\000\002\013\005\000\002\013\003\000\002" +
+    "\005\006\000\002\005\006\000\002\005\006\000\002\023" +
+    "\005\000\002\023\005\000\002\023\003\000\002\024\005" +
+    "\000\002\024\005\000\002\024\005\000\002\024\003\000" +
+    "\002\024\005\000\002\026\003\000\002\026\003\000\002" +
+    "\025\003\000\002\025\003\000\002\025\005\000\002\027" +
+    "\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -54,63 +58,86 @@ public class FnPlotParser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\063\000\016\004\023\016\021\020\004\033\005\034" +
-    "\016\035\014\001\002\000\016\004\023\016\021\020\004" +
-    "\033\005\034\016\035\014\001\002\000\024\005\uffe5\010" +
-    "\uffe5\011\uffe5\012\uffe5\013\uffe5\014\uffe5\017\uffe5\022\uffe5" +
-    "\030\uffe5\001\002\000\022\002\ufffd\004\ufffd\016\ufffd\020" +
-    "\ufffd\021\ufffd\033\ufffd\034\ufffd\035\ufffd\001\002\000\022" +
-    "\002\ufffe\004\ufffe\016\ufffe\020\ufffe\021\ufffe\033\ufffe\034" +
-    "\ufffe\035\ufffe\001\002\000\024\005\uffea\010\uffea\011\uffea" +
-    "\012\033\013\034\014\032\017\uffea\022\uffea\030\uffea\001" +
-    "\002\000\024\005\uffe3\010\uffe3\011\uffe3\012\uffe3\013\uffe3" +
-    "\014\uffe3\017\uffe3\022\uffe3\030\uffe3\001\002\000\004\002" +
-    "\063\001\002\000\012\005\ufffb\017\ufffb\022\ufffb\030\ufffb" +
-    "\001\002\000\020\010\uffe2\011\uffe2\012\uffe2\013\uffe2\014" +
-    "\uffe2\015\060\030\uffe2\001\002\000\020\002\001\004\023" +
-    "\016\021\020\004\033\005\034\016\035\014\001\002\000" +
-    "\024\005\uffe4\010\uffe4\011\uffe4\012\uffe4\013\uffe4\014\uffe4" +
-    "\017\uffe4\022\uffe4\030\uffe4\001\002\000\004\030\056\001" +
-    "\002\000\024\005\uffe6\010\uffe6\011\uffe6\012\uffe6\013\uffe6" +
-    "\014\uffe6\017\uffe6\022\uffe6\030\uffe6\001\002\000\006\017" +
-    "\uffe0\035\044\001\002\000\016\005\ufff9\010\027\011\030" +
-    "\017\ufff9\022\ufff9\030\ufff9\001\002\000\016\004\023\016" +
-    "\021\020\004\033\005\034\016\035\024\001\002\000\024" +
-    "\005\uffe2\010\uffe2\011\uffe2\012\uffe2\013\uffe2\014\uffe2\017" +
-    "\uffe2\022\uffe2\030\uffe2\001\002\000\004\005\026\001\002" +
-    "\000\024\005\uffe1\010\uffe1\011\uffe1\012\uffe1\013\uffe1\014" +
-    "\uffe1\017\uffe1\022\uffe1\030\uffe1\001\002\000\012\004\023" +
-    "\033\005\034\016\035\024\001\002\000\012\004\023\033" +
-    "\005\034\016\035\024\001\002\000\024\005\uffeb\010\uffeb" +
-    "\011\uffeb\012\033\013\034\014\032\017\uffeb\022\uffeb\030" +
-    "\uffeb\001\002\000\012\004\023\033\005\034\016\035\024" +
-    "\001\002\000\012\004\023\033\005\034\016\035\024\001" +
-    "\002\000\012\004\023\033\005\034\016\035\024\001\002" +
-    "\000\024\005\uffe8\010\uffe8\011\uffe8\012\uffe8\013\uffe8\014" +
-    "\uffe8\017\uffe8\022\uffe8\030\uffe8\001\002\000\024\005\uffe9" +
-    "\010\uffe9\011\uffe9\012\uffe9\013\uffe9\014\uffe9\017\uffe9\022" +
-    "\uffe9\030\uffe9\001\002\000\024\005\uffe7\010\uffe7\011\uffe7" +
-    "\012\uffe7\013\uffe7\014\uffe7\017\uffe7\022\uffe7\030\uffe7\001" +
-    "\002\000\024\005\uffec\010\uffec\011\uffec\012\033\013\034" +
-    "\014\032\017\uffec\022\uffec\030\uffec\001\002\000\004\017" +
-    "\ufff0\001\002\000\006\017\uffe0\022\051\001\002\000\004" +
-    "\017\047\001\002\000\004\015\045\001\002\000\016\004" +
-    "\023\016\021\020\004\033\005\034\016\035\024\001\002" +
-    "\000\006\017\ufff2\022\ufff2\001\002\000\016\004\023\016" +
-    "\021\020\004\033\005\034\016\035\024\001\002\000\012" +
-    "\005\ufff8\017\ufff8\022\ufff8\030\ufff8\001\002\000\004\035" +
-    "\044\001\002\000\004\017\uffee\001\002\000\004\017\ufff1" +
-    "\001\002\000\006\017\uffe0\022\051\001\002\000\004\017" +
-    "\uffef\001\002\000\022\002\ufffc\004\ufffc\016\ufffc\020\ufffc" +
-    "\021\ufffc\033\ufffc\034\ufffc\035\ufffc\001\002\000\022\002" +
-    "\uffff\004\uffff\016\uffff\020\uffff\021\uffff\033\uffff\034\uffff" +
-    "\035\uffff\001\002\000\016\004\023\016\021\020\004\033" +
-    "\005\034\016\035\024\001\002\000\004\030\062\001\002" +
-    "\000\022\002\uffed\004\uffed\016\uffed\020\uffed\021\uffed\033" +
-    "\uffed\034\uffed\035\uffed\001\002\000\004\002\000\001\002" +
-    "\000\020\004\023\016\021\020\004\021\065\033\005\034" +
-    "\016\035\014\001\002\000\012\005\ufffa\017\ufffa\022\ufffa" +
-    "\030\ufffa\001\002" });
+    "\000\115\000\016\004\023\016\021\020\004\034\005\035" +
+    "\016\036\014\001\002\000\016\004\023\016\021\020\004" +
+    "\034\005\035\016\036\014\001\002\000\026\005\uffdd\010" +
+    "\uffdd\011\uffdd\012\uffdd\013\uffdd\014\uffdd\017\uffdd\022\uffdd" +
+    "\030\uffdd\031\uffdd\001\002\000\022\002\ufffd\004\ufffd\016" +
+    "\ufffd\020\ufffd\021\ufffd\034\ufffd\035\ufffd\036\ufffd\001\002" +
+    "\000\022\002\ufffe\004\ufffe\016\ufffe\020\ufffe\021\ufffe\034" +
+    "\ufffe\035\ufffe\036\ufffe\001\002\000\026\005\uffe3\010\uffe3" +
+    "\011\uffe3\012\033\013\035\014\032\017\uffe3\022\uffe3\030" +
+    "\034\031\uffe3\001\002\000\026\005\uffdb\010\uffdb\011\uffdb" +
+    "\012\uffdb\013\uffdb\014\uffdb\017\uffdb\022\uffdb\030\uffdb\031" +
+    "\uffdb\001\002\000\004\002\115\001\002\000\012\005\ufffb" +
+    "\017\ufffb\022\ufffb\031\ufffb\001\002\000\022\010\uffda\011" +
+    "\uffda\012\uffda\013\uffda\014\uffda\015\062\030\uffda\031\uffda" +
+    "\001\002\000\020\002\001\004\023\016\021\020\004\034" +
+    "\005\035\016\036\014\001\002\000\026\005\uffdc\010\uffdc" +
+    "\011\uffdc\012\uffdc\013\uffdc\014\uffdc\017\uffdc\022\uffdc\030" +
+    "\uffdc\031\uffdc\001\002\000\004\031\060\001\002\000\026" +
+    "\005\uffdf\010\uffdf\011\uffdf\012\uffdf\013\uffdf\014\uffdf\017" +
+    "\uffdf\022\uffdf\030\uffdf\031\uffdf\001\002\000\006\017\uffd8" +
+    "\036\045\001\002\000\016\005\ufff9\010\027\011\030\017" +
+    "\ufff9\022\ufff9\031\ufff9\001\002\000\016\004\023\016\021" +
+    "\020\004\034\005\035\016\036\024\001\002\000\026\005" +
+    "\uffda\010\uffda\011\uffda\012\uffda\013\uffda\014\uffda\017\uffda" +
+    "\022\uffda\030\uffda\031\uffda\001\002\000\004\005\026\001" +
+    "\002\000\026\005\uffd9\010\uffd9\011\uffd9\012\uffd9\013\uffd9" +
+    "\014\uffd9\017\uffd9\022\uffd9\030\uffd9\031\uffd9\001\002\000" +
+    "\012\004\023\034\005\035\016\036\024\001\002\000\012" +
+    "\004\023\034\005\035\016\036\024\001\002\000\026\005" +
+    "\uffe4\010\uffe4\011\uffe4\012\033\013\035\014\032\017\uffe4" +
+    "\022\uffe4\030\034\031\uffe4\001\002\000\012\004\023\034" +
+    "\005\035\016\036\024\001\002\000\012\004\023\034\005" +
+    "\035\016\036\024\001\002\000\012\004\023\034\005\035" +
+    "\016\036\024\001\002\000\012\004\023\034\005\035\016" +
+    "\036\024\001\002\000\026\005\uffe1\010\uffe1\011\uffe1\012" +
+    "\uffe1\013\uffe1\014\uffe1\017\uffe1\022\uffe1\030\uffe1\031\uffe1" +
+    "\001\002\000\026\005\uffde\010\uffde\011\uffde\012\uffde\013" +
+    "\uffde\014\uffde\017\uffde\022\uffde\030\uffde\031\uffde\001\002" +
+    "\000\026\005\uffe2\010\uffe2\011\uffe2\012\uffe2\013\uffe2\014" +
+    "\uffe2\017\uffe2\022\uffe2\030\uffe2\031\uffe2\001\002\000\026" +
+    "\005\uffe0\010\uffe0\011\uffe0\012\uffe0\013\uffe0\014\uffe0\017" +
+    "\uffe0\022\uffe0\030\uffe0\031\uffe0\001\002\000\026\005\uffe5" +
+    "\010\uffe5\011\uffe5\012\033\013\035\014\032\017\uffe5\022" +
+    "\uffe5\030\034\031\uffe5\001\002\000\004\017\uffeb\001\002" +
+    "\000\006\017\uffd8\022\053\001\002\000\004\015\051\001" +
+    "\002\000\004\017\047\001\002\000\016\004\023\016\021" +
+    "\020\004\034\005\035\016\036\024\001\002\000\012\005" +
+    "\ufff8\017\ufff8\022\ufff8\031\ufff8\001\002\000\016\004\023" +
+    "\016\021\020\004\034\005\035\016\036\024\001\002\000" +
+    "\006\017\uffed\022\uffed\001\002\000\004\036\045\001\002" +
+    "\000\004\017\uffe9\001\002\000\004\017\uffec\001\002\000" +
+    "\006\017\uffd8\022\053\001\002\000\004\017\uffea\001\002" +
+    "\000\022\002\ufffc\004\ufffc\016\ufffc\020\ufffc\021\ufffc\034" +
+    "\ufffc\035\ufffc\036\ufffc\001\002\000\022\002\uffff\004\uffff" +
+    "\016\uffff\020\uffff\021\uffff\034\uffff\035\uffff\036\uffff\001" +
+    "\002\000\020\004\023\016\021\020\004\024\063\034\005" +
+    "\035\016\036\064\001\002\000\004\004\103\001\002\000" +
+    "\022\004\073\010\uffda\011\uffda\012\uffda\013\uffda\014\uffda" +
+    "\030\uffda\031\uffda\001\002\000\004\031\072\001\002\000" +
+    "\004\031\071\001\002\000\004\031\070\001\002\000\022" +
+    "\002\uffe8\004\uffe8\016\uffe8\020\uffe8\021\uffe8\034\uffe8\035" +
+    "\uffe8\036\uffe8\001\002\000\022\002\uffe7\004\uffe7\016\uffe7" +
+    "\020\uffe7\021\uffe7\034\uffe7\035\uffe7\036\uffe7\001\002\000" +
+    "\022\002\uffe6\004\uffe6\016\uffe6\020\uffe6\021\uffe6\034\uffe6" +
+    "\035\uffe6\036\uffe6\001\002\000\020\004\023\005\uffd8\016" +
+    "\021\020\004\034\005\035\016\036\024\001\002\000\004" +
+    "\005\102\001\002\000\004\005\uffef\001\002\000\006\005" +
+    "\ufff0\022\100\001\002\000\006\005\ufff1\022\ufff1\001\002" +
+    "\000\016\004\023\016\021\020\004\034\005\035\016\036" +
+    "\024\001\002\000\006\005\ufff2\022\ufff2\001\002\000\004" +
+    "\031\uffee\001\002\000\006\005\uffd8\036\107\001\002\000" +
+    "\006\005\ufff5\022\113\001\002\000\004\005\ufff4\001\002" +
+    "\000\004\005\110\001\002\000\006\005\ufff6\022\ufff6\001" +
+    "\002\000\004\025\111\001\002\000\016\004\023\016\021" +
+    "\020\004\034\005\035\016\036\024\001\002\000\004\031" +
+    "\ufff3\001\002\000\004\036\114\001\002\000\006\005\ufff7" +
+    "\022\ufff7\001\002\000\004\002\000\001\002\000\020\004" +
+    "\023\016\021\020\004\021\117\034\005\035\016\036\014" +
+    "\001\002\000\012\005\ufffa\017\ufffa\022\ufffa\031\ufffa\001" +
+    "\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -118,35 +145,47 @@ public class FnPlotParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\063\000\026\002\011\003\014\004\006\005\005\006" +
-    "\012\017\016\020\021\021\007\022\017\023\010\001\001" +
-    "\000\024\003\063\004\006\005\005\006\012\017\016\020" +
-    "\021\021\007\022\017\023\010\001\001\000\002\001\001" +
+    "\000\115\000\026\002\011\003\014\004\006\005\005\006" +
+    "\012\022\016\023\021\024\007\025\017\026\010\001\001" +
+    "\000\024\003\115\004\006\005\005\006\012\022\016\023" +
+    "\021\024\007\025\017\026\010\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\022\004\056\005\005\006\012\017\016\020" +
-    "\021\021\007\022\017\023\010\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\010\012\042\016" +
-    "\041\024\040\001\001\000\002\001\001\000\016\006\012" +
-    "\017\024\020\021\021\007\022\017\023\010\001\001\000" +
+    "\001\001\000\022\004\060\005\005\006\012\022\016\023" +
+    "\021\024\007\025\017\026\010\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\010\012\045\020" +
+    "\043\027\042\001\001\000\002\001\001\000\016\006\012" +
+    "\022\024\023\021\024\007\025\017\026\010\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\010" +
-    "\021\037\022\017\023\010\001\001\000\010\021\030\022" +
-    "\017\023\010\001\001\000\002\001\001\000\006\022\036" +
-    "\023\010\001\001\000\006\022\035\023\010\001\001\000" +
-    "\006\022\034\023\010\001\001\000\002\001\001\000\002" +
+    "\024\041\025\017\026\010\001\001\000\010\024\030\025" +
+    "\017\026\010\001\001\000\002\001\001\000\006\025\040" +
+    "\026\010\001\001\000\006\025\037\026\010\001\001\000" +
+    "\006\025\036\026\010\001\001\000\006\025\035\026\010" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\006\013\052\024\051\001\001\000\002\001\001" +
-    "\000\002\001\001\000\016\006\012\017\045\020\021\021" +
-    "\007\022\017\023\010\001\001\000\002\001\001\000\016" +
-    "\006\012\017\047\020\021\021\007\022\017\023\010\001" +
-    "\001\000\002\001\001\000\004\016\053\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\013\054\024\051\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\016\006\012\017\060\020\021\021\007\022\017\023" +
+    "\000\006\013\054\027\053\001\001\000\002\001\001\000" +
+    "\002\001\001\000\016\006\012\022\047\023\021\024\007" +
+    "\025\017\026\010\001\001\000\002\001\001\000\016\006" +
+    "\012\022\051\023\021\024\007\025\017\026\010\001\001" +
+    "\000\002\001\001\000\004\020\055\001\001\000\002\001" +
+    "\001\000\002\001\001\000\006\013\056\027\053\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\022\006\012\007\065\021\064\022\066\023\021\024\007" +
+    "\025\017\026\010\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\024\006\012\016\075\017\073\022\076\023\021\024\007" +
+    "\025\017\026\010\027\074\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\016" +
+    "\006\012\022\100\023\021\024\007\025\017\026\010\001" +
+    "\001\000\002\001\001\000\002\001\001\000\010\014\103" +
+    "\015\105\027\104\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\016\006\012\022\111\023\021\024\007\025\017\026" +
     "\010\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\022\004\056\005\005\006\012\017\016\020" +
-    "\021\021\007\022\017\023\010\001\001\000\002\001\001" +
-    "" });
+    "\001\001\000\002\001\001\000\022\004\060\005\005\006" +
+    "\012\022\016\023\021\024\007\025\017\026\010\001\001" +
+    "\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -344,7 +383,7 @@ class CUP$FnPlotParser$actions {
 		int lright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		StmtLet l = (StmtLet)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		 RESULT = l; 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("expression",13, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("expression",16, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
@@ -356,7 +395,7 @@ class CUP$FnPlotParser$actions {
 		int bodyright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).right;
 		StmtSequence body = (StmtSequence)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).value;
 		 RESULT = body; 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("expression",13, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("expression",16, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
@@ -368,7 +407,7 @@ class CUP$FnPlotParser$actions {
 		int aright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		Exp a = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		 RESULT = a; 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("expression",13, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("expression",16, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
@@ -411,7 +450,7 @@ class CUP$FnPlotParser$actions {
 		int vleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		String v = (String)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
-		 pl.add(v); RESULT=pl; 
+		 ArrayList<String> ls = new ArrayList<>(); ls.add(v); RESULT =ls; 
               CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("paramlist",10, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
@@ -438,22 +477,85 @@ class CUP$FnPlotParser$actions {
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // fundef ::= FUN LPAREN paramlistE RPAREN MAPSTO stmtList 
+          case 14: // fundef ::= FUN LPAREN paramlistE RPAREN MAPSTO expression 
             {
-              ExpFuction RESULT =null;
+              ExpFunction RESULT =null;
 		int plleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).left;
 		int plright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).right;
 		ArrayList<String> pl = (ArrayList<String>)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).value;
 		int bodyleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
 		int bodyright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
-		StmtSequence body = (StmtSequence)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
-		 RESULT = new ExpFuction(pl,body); 
+		Exp body = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
+		 RESULT = new ExpFunction(pl,body); 
               CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("fundef",5, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-5)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // binding ::= VARIABLE ASSIGN expression 
+          case 15: // explist ::= explist COMMA expression 
+            {
+              ArrayList<Exp> RESULT =null;
+		int plleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).left;
+		int plright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).right;
+		ArrayList<Exp> pl = (ArrayList<Exp>)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).value;
+		int vleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
+		int vright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
+		Exp v = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
+		 pl.add(v); RESULT=pl; 
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("explist",12, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+            }
+          return CUP$FnPlotParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 16: // explist ::= expression 
+            {
+              ArrayList<Exp> RESULT =null;
+		int vleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
+		int vright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
+		Exp v = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
+		 ArrayList<Exp> ls = new ArrayList<>(); ls.add(v); RESULT =ls; 
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("explist",12, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+            }
+          return CUP$FnPlotParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 17: // explistE ::= explist 
+            {
+              ArrayList<Exp> RESULT =null;
+		int plleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
+		int plright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
+		ArrayList<Exp> pl = (ArrayList<Exp>)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
+		 RESULT=pl; 
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("explistE",13, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+            }
+          return CUP$FnPlotParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 18: // explistE ::= empty 
+            {
+              ArrayList<Exp> RESULT =null;
+		 RESULT= new ArrayList<> (); 
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("explistE",13, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+            }
+          return CUP$FnPlotParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 19: // funcall ::= VARIABLE LPAREN explistE RPAREN 
+            {
+              ExpFuncall RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).right;
+		String r = (String)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).value;
+		int eleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).left;
+		int eright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).right;
+		ArrayList<Exp> e = (ArrayList<Exp>)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).value;
+		RESULT= new ExpFuncall(r,e);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("funcall",15, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+            }
+          return CUP$FnPlotParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 20: // binding ::= VARIABLE ASSIGN expression 
             {
               Binding RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).left;
@@ -465,12 +567,12 @@ class CUP$FnPlotParser$actions {
 		
 		RESULT = new Binding(v, e);
 	    
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("binding",12, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("binding",14, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // bindings ::= binding bindingsAux 
+          case 21: // bindings ::= binding bindingsAux 
             {
               ArrayList<Binding> RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).left;
@@ -488,7 +590,7 @@ class CUP$FnPlotParser$actions {
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // bindings ::= empty 
+          case 22: // bindings ::= empty 
             {
               ArrayList<Binding> RESULT =null;
 		 RESULT = new ArrayList(); 
@@ -497,7 +599,7 @@ class CUP$FnPlotParser$actions {
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // bindingsAux ::= COMMA binding bindingsAux 
+          case 23: // bindingsAux ::= COMMA binding bindingsAux 
             {
               ArrayList<Binding> RESULT =null;
 		int bleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).left;
@@ -515,7 +617,7 @@ class CUP$FnPlotParser$actions {
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // bindingsAux ::= empty 
+          case 24: // bindingsAux ::= empty 
             {
               ArrayList<Binding> RESULT =null;
 		 RESULT = new ArrayList(); 
@@ -524,7 +626,7 @@ class CUP$FnPlotParser$actions {
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // definition ::= VARIABLE ASSIGN expression SEMI 
+          case 25: // definition ::= VARIABLE ASSIGN expression SEMI 
             {
               StmtDefinition RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).left;
@@ -541,7 +643,37 @@ class CUP$FnPlotParser$actions {
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // arithExp ::= arithExp PLUS term 
+          case 26: // definition ::= VARIABLE ASSIGN fundef SEMI 
+            {
+              StmtDefinition RESULT =null;
+		int vleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).left;
+		int vright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).right;
+		String v = (String)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).value;
+		int fleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).left;
+		int fright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).right;
+		ExpFunction f = (ExpFunction)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).value;
+		RESULT=new StmtDefinition(v,f);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("definition",3, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+            }
+          return CUP$FnPlotParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 27: // definition ::= VARIABLE ASSIGN funcall SEMI 
+            {
+              StmtDefinition RESULT =null;
+		int vleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).left;
+		int vright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).right;
+		String v = (String)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)).value;
+		int tleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).right;
+		ExpFuncall t = (ExpFuncall)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).value;
+		 RESULT=new StmtDefinition(v,t);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("definition",3, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-3)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+            }
+          return CUP$FnPlotParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 28: // arithExp ::= arithExp PLUS term 
             {
               Exp RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).left;
@@ -552,12 +684,12 @@ class CUP$FnPlotParser$actions {
 		Exp t = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		
 			RESULT = new ExpAdd(e, t); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("arithExp",14, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("arithExp",17, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // arithExp ::= arithExp MINUS term 
+          case 29: // arithExp ::= arithExp MINUS term 
             {
               Exp RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).left;
@@ -568,24 +700,24 @@ class CUP$FnPlotParser$actions {
 		Exp t = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		
 			RESULT = new ExpSub(e, t); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("arithExp",14, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("arithExp",17, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // arithExp ::= term 
+          case 30: // arithExp ::= term 
             {
               Exp RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		Exp t = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		 RESULT = t; 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("arithExp",14, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("arithExp",17, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // term ::= term MUL factor 
+          case 31: // term ::= term MUL factor 
             {
               Exp RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).left;
@@ -596,12 +728,12 @@ class CUP$FnPlotParser$actions {
 		Exp f = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		
 		RESULT = new ExpMul(t, f); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",15, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",18, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // term ::= term DIV factor 
+          case 32: // term ::= term DIV factor 
             {
               Exp RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).left;
@@ -612,12 +744,12 @@ class CUP$FnPlotParser$actions {
 		Exp f = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		
 		RESULT = new ExpDiv(t, f); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",15, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",18, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // term ::= term MOD factor 
+          case 33: // term ::= term MOD factor 
             {
               Exp RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).left;
@@ -628,88 +760,103 @@ class CUP$FnPlotParser$actions {
 		Exp f = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		
 		RESULT = new ExpMod(t, f); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",15, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",18, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // term ::= factor 
+          case 34: // term ::= factor 
             {
               Exp RESULT =null;
 		int fleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
 		int fright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		Exp f = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		 RESULT = f; 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",15, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",18, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // number ::= INTEGER 
+          case 35: // term ::= term EXPO factor 
+            {
+              Exp RESULT =null;
+		int tleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).right;
+		Exp t = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)).value;
+		int fleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
+		int fright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
+		Exp f = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
+		 RESULT= new ExpExpo(t, f);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("term",18, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+            }
+          return CUP$FnPlotParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 36: // number ::= INTEGER 
             {
               FnPlotValue< ? > RESULT =null;
 		int ilitleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
 		int ilitright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		Integer ilit = (Integer)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		 RESULT = FnPlotValue.make(ilit); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("number",17, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("number",20, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // number ::= DOUBLE 
+          case 37: // number ::= DOUBLE 
             {
               FnPlotValue< ? > RESULT =null;
 		int ilitleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
 		int ilitright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		Double ilit = (Double)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		 RESULT = FnPlotReal.make(ilit); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("number",17, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("number",20, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // factor ::= number 
+          case 38: // factor ::= number 
             {
               Exp RESULT =null;
 		int nleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
 		int nright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		FnPlotValue< ? > n = (FnPlotValue< ? >)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		 RESULT = new ExpLit(n); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("factor",16, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("factor",19, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 31: // factor ::= VARIABLE 
+          case 39: // factor ::= VARIABLE 
             {
               Exp RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()).right;
 		String var = (String)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.peek()).value;
 		 RESULT = new ExpVar(var); 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("factor",16, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("factor",19, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // factor ::= LPAREN expression RPAREN 
+          case 40: // factor ::= LPAREN expression RPAREN 
             {
               Exp RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).right;
 		Exp e = (Exp)((java_cup.runtime.Symbol) CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-1)).value;
 		 RESULT = e; 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("factor",16, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("factor",19, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.elementAt(CUP$FnPlotParser$top-2)), ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // empty ::= 
+          case 41: // empty ::= 
             {
               Object RESULT =null;
 
-              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("empty",18, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
+              CUP$FnPlotParser$result = parser.getSymbolFactory().newSymbol("empty",21, ((java_cup.runtime.Symbol)CUP$FnPlotParser$stack.peek()), RESULT);
             }
           return CUP$FnPlotParser$result;
 

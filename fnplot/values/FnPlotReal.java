@@ -54,8 +54,8 @@ public class FnPlotReal extends FnPlotValue<FnPlotReal> {
     @Override
     public FnPlotReal mul(FnPlotValue<?> arg) throws FnPlotException {
         return make(value * arg.doubleValue());
-    }
-
+    } 
+    
     /**
      * Divide the given value by this value.
      * @param arg The divisor
@@ -66,7 +66,10 @@ public class FnPlotReal extends FnPlotValue<FnPlotReal> {
     public FnPlotReal div(FnPlotValue<?> arg) throws FnPlotException {
         return make(value / arg.doubleValue());
     }
-
+    @Override
+    public FnPlotReal expo(FnPlotValue<?> arg) throws FnPlotException {
+        return make( Math.pow(value ,arg.doubleValue()) ); 
+    }
     /**
      * Compute the remainder of dividing this value by the given value.
      * @param arg The divisor

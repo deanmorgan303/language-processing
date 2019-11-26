@@ -14,14 +14,15 @@ public class sym {
   public static final int PLUS = 6;
   public static final int RBRACE = 15;
   public static final int RPAREN = 3;
-  public static final int SEMI = 22;
+  public static final int SEMI = 23;
   public static final int IN = 13;
   public static final int CLEAR = 21;
-  public static final int GREATER = 24;
-  public static final int VARIABLE = 27;
-  public static final int COLON = 23;
+  public static final int GREATER = 25;
+  public static final int VARIABLE = 28;
+  public static final int COLON = 24;
   public static final int LPAREN = 2;
   public static final int LBRACE = 14;
+  public static final int EXPO = 22;
   public static final int COMMA = 16;
   public static final int EOF = 0;
   public static final int DIV = 9;
@@ -29,12 +30,12 @@ public class sym {
   public static final int error = 1;
   public static final int LET = 12;
   public static final int ASSIGN = 11;
-  public static final int INTEGER = 25;
+  public static final int INTEGER = 26;
   public static final int FOR = 20;
   public static final int LSBRACE = 4;
   public static final int MUL = 8;
   public static final int RSBRACE = 5;
-  public static final int DOUBLE = 26;
+  public static final int DOUBLE = 27;
   public static final int FUN = 18;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -59,6 +60,7 @@ public class sym {
   "MAPSTO",
   "FOR",
   "CLEAR",
+  "EXPO",
   "SEMI",
   "COLON",
   "GREATER",

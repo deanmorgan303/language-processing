@@ -6,6 +6,7 @@ import java.util.*;
 import fnplot.sys.SyntaxFnPlotException;
 import fnplot.values.FnPlotValue;
 import fnplot.values.FnPlotReal;
+import fnplot.syntax.ExpFunction;
 
 /* Preliminaries to set up and use the scanner.  */
 parser code {:
@@ -53,7 +54,7 @@ terminal LPAREN, RPAREN,LSBRACE,RSBRACE;
 // arithmetic operators
 terminal PLUS, MINUS, MUL, DIV, MOD, ASSIGN;
 terminal LET, IN, LBRACE, RBRACE, COMMA; 
-terminal PLOT, FUN, MAPSTO,FOR, CLEAR;
+terminal PLOT, FUN, MAPSTO,FOR, CLEAR,EXPO;
 terminal SEMI,COLON,GREATER;
 
 // terminals with values
@@ -68,15 +69,17 @@ non terminal Statement stmt;
 non terminal StmtDefinition definition;
 
 non terminal StmtLet letExp; 
-non terminal ExpFuction fundef; 
+non terminal ExpFunction fundef; 
 non terminal Stmtfn   fnExp;
 non terminal Expplot plotExp;
 non terminal ArrayList<Binding> bindings;
 non terminal ArrayList<Binding> bindingsAux; 
 non terminal ArrayList<String> paramlist;
 non terminal ArrayList<String> paramlistE; 
+non terminal ArrayList<Exp> explist;
+non terminal ArrayList<Exp> explistE;
 non terminal Binding binding;
-
+non terminal ExpFuncall funcall;
 non terminal Exp expression;
 non terminal Exp arithExp;
 non terminal Exp term;
@@ -108,17 +111,23 @@ letExp ::= LET bindings:bs IN expression:body {:
 			RESULT = new StmtLet(bs, body);
            :}; 
 paramlist ::= paramlist:pl COMMA VARIABLE: v {: pl.add(v); RESULT=pl; :} |
-                VARIABLE:v {: pl.add(v); RESULT=pl; :} ;
-				VARIABLE:v {: ArrayList<String> ls = new ArrayList<>(); ls.add(v); RESULT =ls; :};
-
+               VARIABLE:v {: ArrayList<String> ls = new ArrayList<>(); ls.add(v); RESULT =ls; :};
+			   /*VARIABLE:v {: pl.add(v); RESULT=pl; :};*/
 paramlistE ::= paramlist:pl {: RESULT=pl; :} | 
       empty {: RESULT= new ArrayList<> (); :};
 
 
-fundef ::= FUN LPAREN paramlistE:pl RPAREN MAPSTO stmtList:body 
-               {: RESULT = new ExpFuction(pl,body); :};
+fundef ::= FUN LPAREN paramlistE:pl RPAREN MAPSTO expression:body 
+               {: RESULT = new ExpFunction(pl,body); :};
 
+explist ::= explist:pl COMMA expression: v {: pl.add(v); RESULT=pl; :} |
+               expression:v {: ArrayList<Exp> ls = new ArrayList<>(); ls.add(v); RESULT =ls; :};
+			   
+explistE ::= explist:pl {: RESULT=pl; :} | 
+      empty {: RESULT= new ArrayList<> (); :};
 
+funcall ::= VARIABLE:r LPAREN explistE:e RPAREN
+             {:RESULT= new ExpFuncall(r,e);:};
 
 binding ::= VARIABLE:v ASSIGN expression:e {:
 		RESULT = new Binding(v, e);
@@ -138,9 +147,10 @@ bindingsAux ::= COMMA binding:b bindingsAux:bl {:
 
 definition ::= VARIABLE:v ASSIGN expression:e SEMI {:
 		   RESULT = new StmtDefinition(v, e);
-		:};
+		:} | VARIABLE:v ASSIGN fundef:f SEMI{:RESULT=new StmtDefinition(v,f);:} |
+		   VARIABLE:v ASSIGN funcall:t SEMI {: RESULT=new StmtDefinition(v,t);:};
 
-arithExp ::= 	arithExp:e PLUS term:t {:
+arithExp ::= arithExp:e PLUS term:t {:
 			RESULT = new ExpAdd(e, t); :} |
 		arithExp:e MINUS term:t {:
 			RESULT = new ExpSub(e, t); :} |
@@ -152,7 +162,9 @@ term ::= term:t MUL factor:f {:
 		RESULT = new ExpDiv(t, f); :} |
 	 term:t MOD factor:f {:
 		RESULT = new ExpMod(t, f); :} |
-	 factor:f {: RESULT = f; :};
+	 factor:f {: RESULT = f; :} | 
+	 term:t EXPO factor:f {: RESULT= new ExpExpo(t, f);:}
+	 ;
 
 number ::= INTEGER:ilit {: RESULT = FnPlotValue.make(ilit); :} |
            DOUBLE:ilit {: RESULT = FnPlotReal.make(ilit); :};

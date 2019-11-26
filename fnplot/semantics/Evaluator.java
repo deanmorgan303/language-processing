@@ -7,10 +7,12 @@ import fnplot.syntax.StmtDefinition;
 import fnplot.syntax.StmtSequence;
 import fnplot.syntax.ExpLit;
 import fnplot.syntax.ExpDiv;
+import fnplot.syntax.ExpExpo;
 import fnplot.syntax.ExpMul;
 import fnplot.syntax.ExpAdd;
 import fnplot.syntax.ExpVar;
 import fnplot.syntax.ExpMod;
+import fnplot.syntax.ExpFuncall;
 import fnplot.syntax.ExpSub;
 import fnplot.syntax.Binding;
 import fnplot.syntax.ArithProgram;
@@ -48,9 +50,16 @@ public class Evaluator
         globalEnv = new Environment<>();
     } 
     //dean work
-    public FnPlotValue<?> visitFnDefn(ExpFunction sd,Environment<FnPlotValue<?>> env) throws FnPlotException{
-        return null;
+    public FnPlotValue<?> visitFnDefn(ExpFunction sd,Environment<FnPlotValue<?>> env) throws FnPlotException{ 
+         result=null;
+        return result;
+    } 
+    public FnPlotValue<?> visitExpFuncall(ExpFuncall exp, Environment<FnPlotValue<?>> env) throws FnPlotException{ 
+        String name= exp.toString();
+
+        return name;
     }
+    
     public FnPlotValue<?> visitStmtFun(StmtFun let,Environment<FnPlotValue<?>> env) throws FnPlotException{
         ArrayList<Binding> bindings = let.getBindings();
         Exp body = let.getBody();
@@ -168,7 +177,16 @@ public class Evaluator
     }
 	return val1.add(val2);
     }
+    @Override 
+    public FnPlotValue<?> visitExpExpo(ExpExpo exp, Environment<FnPlotValue<?>> arg) throws FnPlotException
+        { 
+            FnPlotValue<?> val1, val2;
+            val1 = exp.getExpL().visit(this, arg);
+            val2 = exp.getExpR().visit(this, arg); 
+            return val1.expo(val2);
 
+            
+    }
     @Override
     public FnPlotValue<?> visitExpSub(ExpSub exp, Environment<FnPlotValue<?>> arg)
 	throws FnPlotException {

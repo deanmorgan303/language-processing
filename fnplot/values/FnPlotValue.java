@@ -103,7 +103,10 @@ public abstract class FnPlotValue<T extends FnPlotValue<T>> {
      */
     public FnPlotValue<?> mod(FnPlotValue<?> arg) throws FnPlotException {
             throw new TypeFnPlotException("Operation mod called with non-numeric type");
-    }
+    } 
+    public FnPlotValue<?> expo(FnPlotValue<?> arg) throws FnPlotException {
+        throw new TypeFnPlotException("Operation expo called with non-numeric type");
+}
 
     /**
      *

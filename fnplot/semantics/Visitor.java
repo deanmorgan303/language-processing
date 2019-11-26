@@ -4,7 +4,6 @@ import fnplot.syntax.Statement;
 import fnplot.syntax.StmtDefinition;
 import fnplot.syntax.StmtLet;
 import fnplot.syntax.StmtFun;
-import fnplot.syntax.ExpFunction;
 import fnplot.syntax.StmtSequence;
 import fnplot.syntax.ExpDiv;
 import fnplot.syntax.ExpLit;
@@ -13,8 +12,11 @@ import fnplot.syntax.ExpSub;
 import fnplot.syntax.ExpMod;
 import fnplot.syntax.ExpVar;
 import fnplot.syntax.ExpAdd;
+import fnplot.syntax.ExpFuncall;
+import fnplot.syntax.ExpExpo;
+import fnplot.syntax.ExpFunction;
 import fnplot.syntax.ArithProgram;
-import fnplot.sys.FnPlotException;
+import fnplot.sys.FnPlotException; 
 
 /**
  * The generic Visitor interface for the Arithmetic parser
@@ -51,7 +53,7 @@ public interface Visitor<S, T> {
     
     public T visitFnDefn(ExpFunction sd,S arg) throws FnPlotException;
     
-    public T visitStmtFun(StmtFun funny,S arg) throws FnPlotException;
+    public T visitStmtFun(StmtFun funny,S arg) throws FnPlotException; 
     /**
      * Visit a let expression.
      * @param letExp The let AST node to be visited.
@@ -101,7 +103,8 @@ public interface Visitor<S, T> {
      * @return The result of visiting the subtree rooted at this node in the AST.
      * @throws FnPlotException If an error arises while visiting the subtree.
      */
-    public T visitExpDiv(ExpDiv exp, S arg) throws FnPlotException;
+    public T visitExpDiv(ExpDiv exp, S arg) throws FnPlotException; 
+
     
     /**
      * Visit a modulo expression.
@@ -113,6 +116,9 @@ public interface Visitor<S, T> {
      */
     public T visitExpMod(ExpMod exp, S arg) throws FnPlotException;
     
+    public T visitExpExpo(ExpExpo exp, S arg) throws FnPlotException; 
+
+    public T visitExpFuncall(ExpFuncall exp, S arg) throws FnPlotException;
     /**
      * Visit a literal expression.
      * @param exp The literal AST node to be visited.

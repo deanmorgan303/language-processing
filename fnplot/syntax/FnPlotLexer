@@ -93,7 +93,7 @@ alphanum = {alpha}|{num}
 <YYINITIAL> "for"   {return new Symbol(sym.FOR);}
 <YYINITIAL> "clear" {return new Symbol(sym.CLEAR);}
 <YYINITIAL> ">"     { return new Symbol(sym.GREATER);}
-
+<YYINITIAL> "^"     { return new Symbol(sym.EXPO);}
 
 <YYINITIAL>    {num}+ {
 	       // INTEGER
